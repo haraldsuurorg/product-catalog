@@ -1,6 +1,7 @@
 @import "styles/settings/__settings";
 @import "style.css";
 
+
 * {
   box-sizing: border-box;
 }
@@ -55,4 +56,17 @@ figcaption {
   left: -9999px;
   width: 0;
   height: 0;
+}
+
+.highHero {
+  height: 75vh;
+  margin-top: 0 !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(90deg, rgba(33, 214, 106, 0.5) 0%, rgba(26, 87, 160, 0.5));
+
+  h1 {
+    text-align: center;
+  }
 }
