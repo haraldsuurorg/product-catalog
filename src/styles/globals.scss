@@ -17,6 +17,22 @@ p {
   line-height: 1.6;
   margin: 1.2em 0;
 }
+h1 {
+  font-size: 62px;
+}
+
+h2 {
+  font-size: 42px;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+h3 {
+  font-size: 24px;
+  margin: 0;
+  color: black;
+  text-align: center;
+}
 
 ul {
   padding-left: 1.2em;
@@ -24,6 +40,10 @@ ul {
 
 a {
   color: $color-primary;
+
+  &:hover {
+    text-decoration: none;
+  }
 }
 
 img {
@@ -58,15 +78,15 @@ figcaption {
   height: 0;
 }
 
-.highHero {
-  height: 75vh;
-  margin-top: 0 !important;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(90deg, rgba(33, 214, 106, 0.5) 0%, rgba(26, 87, 160, 0.5));
+.button {
+  border: 1px solid black;
+  border-radius: 2.5rem;
+  color: black;
+  padding: 10px 20px;
+  width: fit-content;
 
-  h1 {
-    text-align: center;
+  &:hover {
+    color: $color-primary;
+    border-color: $color-primary;
   }
 }

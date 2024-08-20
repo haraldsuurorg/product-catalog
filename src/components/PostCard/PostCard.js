@@ -8,22 +8,21 @@ import { FaMapPin } from 'react-icons/fa';
 import styles from './PostCard.module.scss';
 
 const PostCard = ({ post, options = {} }) => {
-  const { title, excerpt, slug, date, author, categories, isSticky = false } = post;
+  const { title, excerpt, slug, date, author, categories, featuredImage, isSticky = false } = post;
   const { excludeMetadata = [] } = options;
 
   const metadata = {};
-
-  if (!excludeMetadata.includes('author')) {
-    metadata.author = author;
-  }
-
+  
   if (!excludeMetadata.includes('date')) {
     metadata.date = date;
   }
-
-  if (!excludeMetadata.includes('categories')) {
-    metadata.categories = categories;
-  }
+  
+  // if (!excludeMetadata.includes('author')) {
+  //   metadata.author = author;
+  // }
+  // if (!excludeMetadata.includes('categories')) {
+  //   metadata.categories = categories;
+  // }
 
   let postCardStyle = styles.postCard;
 
@@ -34,23 +33,24 @@ const PostCard = ({ post, options = {} }) => {
   return (
     <div className={postCardStyle}>
       {isSticky && <FaMapPin aria-label="Sticky Post" />}
-      <Link href={postPathBySlug(slug)}>
-        <h3
-          className={styles.postCardTitle}
-          dangerouslySetInnerHTML={{
-            __html: title,
-          }}
-        />
-      </Link>
-      <Metadata className={styles.postCardMetadata} {...metadata} />
-      {excerpt && (
-        <div
-          className={styles.postCardContent}
-          dangerouslySetInnerHTML={{
-            __html: sanitizeExcerpt(excerpt),
-          }}
+      {featuredImage && (
+        <img 
+          src={featuredImage.sourceUrl}
+          alt={title}
         />
       )}
+      
+      <Metadata className={styles.postCardMetadata} {...metadata} />
+
+      <h3
+        className={styles.postCardTitle}
+        dangerouslySetInnerHTML={{
+          __html: title,
+        }}
+        />
+      <Link href={postPathBySlug(slug)}>
+        <div className="button">Loe rohkem</div>
+      </Link>
     </div>
   );
 };

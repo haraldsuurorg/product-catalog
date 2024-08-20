@@ -1,5 +1,9 @@
+// vana !!
+
 import useSite from 'hooks/use-site';
-import { getPaginatedPosts } from 'lib/posts';
+import { getPostsByCategoryId } from 'lib/posts';
+import { getProductsByProductCategory } from 'lib/products';
+import { getAllProducts } from 'lib/products';
 import { WebsiteJsonLd } from 'lib/json-ld';
 
 import Layout from 'components/Layout';
@@ -8,10 +12,12 @@ import Section from 'components/Section';
 import Container from 'components/Container';
 import PostCard from 'components/PostCard';
 import Pagination from 'components/Pagination';
+import ProductCard from 'components/ProductCard';
 
 import styles from 'styles/pages/Home.module.scss';
 
-export default function Home({ posts, pagination }) {
+export default function Home({ posts, products }) {
+
   const { metadata = {} } = useSite();
   const { title, description } = metadata;
 
@@ -19,7 +25,7 @@ export default function Home({ posts, pagination }) {
     <Layout>
       <WebsiteJsonLd siteTitle={title} />
     
-      <Section className="highHero">
+      <Section className={styles.highHero}>
         <Container>
         <h1
            dangerouslySetInnerHTML={{
@@ -30,8 +36,23 @@ export default function Home({ posts, pagination }) {
       </Section>
 
       <Section>
-        <Container>
-          <h2 className="sr-only">Posts</h2>
+        <Container className={styles.productWrapper}>
+          <h2>Populaarsed tooted</h2>
+          <ul className={styles.products}>
+            {products.map((product) => {
+              return (
+                <li key={product.slug}>
+                  <ProductCard product={product} />
+                </li>
+              );
+            })}
+          </ul>
+        </Container>
+      </Section>
+
+      <Section>
+        <Container className={styles.postWrapper}>
+          <h2>Uudised</h2>
           <ul className={styles.posts}>
             {posts.map((post) => {
               return (
@@ -41,14 +62,6 @@ export default function Home({ posts, pagination }) {
               );
             })}
           </ul>
-          {pagination && (
-            <Pagination
-              addCanonical={false}
-              currentPage={pagination?.currentPage}
-              pagesCount={pagination?.pagesCount}
-              basePath={pagination?.basePath}
-            />
-          )}
         </Container>
       </Section>
     </Layout>
@@ -56,16 +69,16 @@ export default function Home({ posts, pagination }) {
 }
 
 export async function getStaticProps() {
-  const { posts, pagination } = await getPaginatedPosts({
-    queryIncludes: 'archive',
-  });
+  const productCategoryName = 'Populaarne';
+  const { products } = await getProductsByProductCategory(productCategoryName);
+
+  const categoryId = 9;
+  const { posts } = await getPostsByCategoryId({ categoryId });
+
   return {
     props: {
-      posts,
-      pagination: {
-        ...pagination,
-        basePath: '/posts',
-      },
+      products,
+      posts
     },
   };
 }

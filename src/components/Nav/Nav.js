@@ -23,7 +23,7 @@ const Nav = () => {
   const { metadata = {}, menus } = useSite();
   const { title } = metadata;
 
-  const navigationLocation = process.env.WORDPRESS_MENU_LOCATION_NAVIGATION || MENU_LOCATION_NAVIGATION_DEFAULT;
+  const navigationLocation = 'MENU_1';
   const navigation = findMenuByLocation(menus, navigationLocation);
 
   const { query, results, search, clearSearch, state } = useSearch({
