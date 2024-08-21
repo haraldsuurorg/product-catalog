@@ -1,6 +1,6 @@
-import Link from "next/link";
+import Link from 'next/link';
 
-import { productPathBySlug } from "lib/products";
+import { productPathBySlug } from 'lib/products';
 
 import styles from './ProductCard.module.scss';
 
@@ -10,15 +10,9 @@ const ProductCard = ({ product = {} }) => {
   return (
     <div className={styles.productCard}>
       <Link href={productPathBySlug(slug)}>
-        {featuredImage && (
-          <img 
-            src={featuredImage.node.sourceUrl}
-            alt={title}
-            className={styles.ProductCardImage}
-          />
-        )}
+        {featuredImage && <img src={featuredImage.node.sourceUrl} alt={title} className={styles.ProductCardImage} />}
 
-        <h3 
+        <h3
           className={styles.ProductCardTitle}
           dangerouslySetInnerHTML={{
             __html: title,

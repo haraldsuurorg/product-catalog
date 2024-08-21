@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { postPathBySlug, sanitizeExcerpt } from 'lib/posts';
+import { postPathBySlug } from 'lib/posts';
 
 import Metadata from 'components/Metadata';
 
@@ -8,15 +8,15 @@ import { FaMapPin } from 'react-icons/fa';
 import styles from './PostCard.module.scss';
 
 const PostCard = ({ post, options = {} }) => {
-  const { title, excerpt, slug, date, author, categories, featuredImage, isSticky = false } = post;
+  const { title, slug, date, featuredImage, isSticky = false } = post;
   const { excludeMetadata = [] } = options;
 
   const metadata = {};
-  
+
   if (!excludeMetadata.includes('date')) {
     metadata.date = date;
   }
-  
+
   // if (!excludeMetadata.includes('author')) {
   //   metadata.author = author;
   // }
@@ -33,13 +33,8 @@ const PostCard = ({ post, options = {} }) => {
   return (
     <div className={postCardStyle}>
       {isSticky && <FaMapPin aria-label="Sticky Post" />}
-      {featuredImage && (
-        <img 
-          src={featuredImage.sourceUrl}
-          alt={title}
-        />
-      )}
-      
+      {featuredImage && <img src={featuredImage.sourceUrl} alt={title} />}
+
       <Metadata className={styles.postCardMetadata} {...metadata} />
 
       <h3
@@ -47,7 +42,7 @@ const PostCard = ({ post, options = {} }) => {
         dangerouslySetInnerHTML={{
           __html: title,
         }}
-        />
+      />
       <Link href={postPathBySlug(slug)}>
         <div className="button">Loe rohkem</div>
       </Link>

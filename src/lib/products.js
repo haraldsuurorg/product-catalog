@@ -1,10 +1,6 @@
-import { getApolloClient } from "./apollo-client";
+import { getApolloClient } from './apollo-client';
 
-import {
-  QUERY_ALL_PRODUCTS,
-  QUERY_ALL_PRODUCTS_BY_SLUG,
-  QUERY_PRODUCTS_BY_PRODUCT_CATEGORY,
-} from "data/products";
+import { QUERY_ALL_PRODUCTS, QUERY_ALL_PRODUCTS_BY_SLUG, QUERY_PRODUCTS_BY_PRODUCT_CATEGORY } from 'data/products';
 
 /**
  * productPathBySlug

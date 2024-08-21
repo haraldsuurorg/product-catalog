@@ -1,6 +1,6 @@
 @import "styles/settings/__settings";
 
- .highHero {
+.highHero {
   height: 75vh;
   margin-top: 0;
   display: flex;
@@ -23,7 +23,7 @@
 .productWrapper {
   .products {
     display: grid;
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns: repeat(3, 1fr);
     grid-gap: 1.5rem;
     list-style: none;
   }
@@ -32,10 +32,9 @@
 .postWrapper {
   .posts {
     display: grid;
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns: repeat(3, 1fr);
     grid-gap: 1.5rem;
     list-style: none;
     padding: 0;
   }
 }
-

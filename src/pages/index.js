@@ -3,35 +3,31 @@
 import useSite from 'hooks/use-site';
 import { getPostsByCategoryId } from 'lib/posts';
 import { getProductsByProductCategory } from 'lib/products';
-import { getAllProducts } from 'lib/products';
 import { WebsiteJsonLd } from 'lib/json-ld';
 
 import Layout from 'components/Layout';
-import Header from 'components/Header';
 import Section from 'components/Section';
 import Container from 'components/Container';
 import PostCard from 'components/PostCard';
-import Pagination from 'components/Pagination';
 import ProductCard from 'components/ProductCard';
 
 import styles from 'styles/pages/Home.module.scss';
 
 export default function Home({ posts, products }) {
-
   const { metadata = {} } = useSite();
   const { title, description } = metadata;
 
   return (
     <Layout>
       <WebsiteJsonLd siteTitle={title} />
-    
+
       <Section className={styles.highHero}>
         <Container>
-        <h1
-           dangerouslySetInnerHTML={{
-             __html: description,
-           }}
-         />
+          <h1
+            dangerouslySetInnerHTML={{
+              __html: description,
+            }}
+          />
         </Container>
       </Section>
 
@@ -78,12 +74,10 @@ export async function getStaticProps() {
   return {
     props: {
       products,
-      posts
+      posts,
     },
   };
 }
-
-
 
 // import useSite from 'hooks/use-site';
 // import { getPaginatedPosts } from 'lib/posts';

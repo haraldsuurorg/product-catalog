@@ -20,15 +20,15 @@ export const POST_FIELDS = gql`
     slug
     title
     featuredImage {
-            node {
-              altText
-              caption
-              id
-              sizes
-              sourceUrl
-              srcSet
-            }
-          }
+      node {
+        altText
+        caption
+        id
+        sizes
+        sourceUrl
+        srcSet
+      }
+    }
   }
 `;
 
