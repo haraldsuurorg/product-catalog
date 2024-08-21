@@ -8,16 +8,18 @@
     "build": "next build && next export",
     "dev": "next dev",
     "export": "next export",
-    "format": "pnpm lint --fix",
-    "format:no-path": "pnpm lint:no-path --fix",
+    "lint-staged": "lint-staged",
+    "format": "npm run lint --fix",
+    "format:no-path": "npm run lint:no-path --fix",
     "lint": "eslint .",
     "lint:no-path": "eslint",
     "start": "next start -p ${PORT:=3000}",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "prettier": "prettier"
   },
   "lint-staged": {
-    "**/*.js": "pnpm format:no-path",
-    "**/*.scss": "pnpm prettier --write"
+    "**/*.js": "npm run format:no-path",
+    "**/*.scss": "npm run prettier --write"
   },
   "dependencies": {
     "@apollo/client": "^3.7.14",
